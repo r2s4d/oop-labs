@@ -11,9 +11,7 @@
 
 namespace Lab06;
 
-/// <summary>
-/// Пользовательский тип для проверки обобщенного кода.
-/// </summary>
+// Пользовательский тип для проверки обобщенного кода.
 public sealed class TimeOfDay : IEquatable<TimeOfDay>
 {
     private const int SecondsPerDay = 24 * 60 * 60;
@@ -42,9 +40,7 @@ public sealed class TimeOfDay : IEquatable<TimeOfDay>
 
     public int Seconds => TotalSeconds % 60;
 
-    /// <summary>
-    /// Прибавляет заданное количество секунд и возвращает новый объект.
-    /// </summary>
+    // Прибавляет заданное количество секунд и возвращает новый объект.
     public static TimeOfDay operator +(TimeOfDay time, int seconds)
     {
         ArgumentNullException.ThrowIfNull(time);

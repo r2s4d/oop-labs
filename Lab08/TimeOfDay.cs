@@ -11,9 +11,7 @@
 
 namespace Lab08;
 
-/// <summary>
-/// Время суток, которое можно сравнивать, сортировать и искать в коллекции.
-/// </summary>
+// Время суток, которое можно сравнивать, сортировать и искать в коллекции.
 public sealed class TimeOfDay : IComparable<TimeOfDay>, IEquatable<TimeOfDay>
 {
     public TimeOfDay(int hours, int minutes, int seconds)
@@ -36,9 +34,7 @@ public sealed class TimeOfDay : IComparable<TimeOfDay>, IEquatable<TimeOfDay>
 
     public int TotalSeconds => Hours * 3600 + Minutes * 60 + Seconds;
 
-    /// <summary>
-    /// Сравнивает два объекта по количеству секунд от начала суток.
-    /// </summary>
+    // Сравнивает два объекта по количеству секунд от начала суток.
     public int CompareTo(TimeOfDay? other)
     {
         return other is null ? 1 : TotalSeconds.CompareTo(other.TotalSeconds);
@@ -59,9 +55,7 @@ public sealed class TimeOfDay : IComparable<TimeOfDay>, IEquatable<TimeOfDay>
         return TotalSeconds;
     }
 
-    /// <summary>
-    /// Преобразует текст формата ЧЧ:ММ:СС в объект времени.
-    /// </summary>
+    // Преобразует текст формата ЧЧ:ММ:СС в объект времени.
     public static TimeOfDay Parse(string text)
     {
         string[] parts = text.Split(':');

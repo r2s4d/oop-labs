@@ -10,9 +10,7 @@
 
 namespace Lab04;
 
-/// <summary>
-/// Поезд с количеством вагонов и мест в каждом вагоне.
-/// </summary>
+// Поезд с количеством вагонов и мест в каждом вагоне.
 public sealed class Train : TransportVehicle
 {
     public Train(

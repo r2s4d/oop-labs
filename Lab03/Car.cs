@@ -10,9 +10,7 @@
 
 namespace Lab03;
 
-/// <summary>
-/// Конкретный вид транспорта, который представляет автомобиль.
-/// </summary>
+// Конкретный вид транспорта, который представляет автомобиль.
 public sealed class Car : TransportVehicle
 {
     public Car(
@@ -31,9 +29,7 @@ public sealed class Car : TransportVehicle
 
     public string RegistrationNumber { get; }
 
-    /// <summary>
-    /// Реализует обязательный абстрактный метод базового класса.
-    /// </summary>
+    // Реализует обязательный абстрактный метод базового класса.
     public override string GetDescription()
     {
         return $"Автомобиль {Brand}, номер {RegistrationNumber}, " +

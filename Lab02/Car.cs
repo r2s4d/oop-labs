@@ -10,21 +10,15 @@
 
 namespace Lab02;
 
-/// <summary>
-/// Представляет автомобиль и наследует общие свойства транспорта.
-/// </summary>
+// Представляет автомобиль и наследует общие свойства транспорта.
 public class Car : TransportVehicle
 {
-    /// <summary>
-    /// Создает автомобиль со стандартными значениями.
-    /// </summary>
+    // Создает автомобиль со стандартными значениями.
     public Car() : this("Не указана", "Не указан", 1, "Не указано", DateTime.Now.Year)
     {
     }
 
-    /// <summary>
-    /// Создает автомобиль со всеми необходимыми характеристиками.
-    /// </summary>
+    // Создает автомобиль со всеми необходимыми характеристиками.
     public Car(
         string brand,
         string registrationNumber,
@@ -37,19 +31,13 @@ public class Car : TransportVehicle
         RegistrationNumber = registrationNumber;
     }
 
-    /// <summary>
-    /// Марка автомобиля.
-    /// </summary>
+    // Марка автомобиля.
     public string Brand { get; set; }
 
-    /// <summary>
-    /// Государственный регистрационный номер.
-    /// </summary>
+    // Государственный регистрационный номер.
     public string RegistrationNumber { get; set; }
 
-    /// <summary>
-    /// Дополняет общее описание сведениями об автомобиле.
-    /// </summary>
+    // Дополняет общее описание сведениями об автомобиле.
     public override string GetDescription()
     {
         return $"Автомобиль {Brand}, номер {RegistrationNumber}, " + base.GetDescription();

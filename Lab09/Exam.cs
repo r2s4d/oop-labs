@@ -11,9 +11,7 @@
 
 namespace Lab09;
 
-/// <summary>
-/// Экзамен с названием предмета и проходным баллом.
-/// </summary>
+// Экзамен с названием предмета и проходным баллом.
 public class Exam : Test
 {
     private int _passingScore;
@@ -64,9 +62,7 @@ public class Exam : Test
     }
 }
 
-/// <summary>
-/// Выпускной экзамен дополнительно хранит номер протокола комиссии.
-/// </summary>
+// Выпускной экзамен дополнительно хранит номер протокола комиссии.
 public class FinalExam : Exam
 {
     public FinalExam()

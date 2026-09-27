@@ -13,9 +13,7 @@ using System.Collections;
 
 namespace Lab07;
 
-/// <summary>
-/// Обобщенный вектор с проверкой основных ошибочных ситуаций.
-/// </summary>
+// Обобщенный вектор с проверкой основных ошибочных ситуаций.
 public sealed class CVector<T> : IEnumerable<T>
 {
     private readonly T[] _items;
@@ -52,9 +50,7 @@ public sealed class CVector<T> : IEnumerable<T>
         }
     }
 
-    /// <summary>
-    /// Вычитает элементы двух векторов и проверяет равенство размеров.
-    /// </summary>
+    // Вычитает элементы двух векторов и проверяет равенство размеров.
     public static CVector<T> operator -(CVector<T> left, CVector<T> right)
     {
         if (left.Count != right.Count)

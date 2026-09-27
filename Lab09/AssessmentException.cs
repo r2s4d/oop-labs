@@ -11,9 +11,7 @@
 
 namespace Lab09;
 
-/// <summary>
-/// Описывает ошибку при создании или изменении формы контроля.
-/// </summary>
+// Описывает ошибку при создании или изменении формы контроля.
 public sealed class AssessmentException : Exception
 {
     public AssessmentException(string message) : base(message)

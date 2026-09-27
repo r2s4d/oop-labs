@@ -10,9 +10,7 @@
 
 namespace Lab04;
 
-/// <summary>
-/// Автомобиль с маркой и регистрационным номером.
-/// </summary>
+// Автомобиль с маркой и регистрационным номером.
 public sealed class Car : TransportVehicle
 {
     public Car(

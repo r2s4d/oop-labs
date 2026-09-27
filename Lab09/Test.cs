@@ -11,9 +11,7 @@
 
 namespace Lab09;
 
-/// <summary>
-/// Абстрактная основа для всех форм проверки знаний.
-/// </summary>
+// Абстрактная основа для всех форм проверки знаний.
 public abstract class Test
 {
     // Поля являются общими для всего класса, а не для отдельного объекта.
@@ -24,9 +22,7 @@ public abstract class Test
     private int _maximumScore;
     private int _score;
 
-    /// <summary>
-    /// Статический конструктор выполняется один раз перед первым использованием класса.
-    /// </summary>
+    // Статический конструктор выполняется один раз перед первым использованием класса.
     static Test()
     {
         _createdCount = 0;
@@ -34,16 +30,12 @@ public abstract class Test
         Console.WriteLine("Выполнен статический конструктор класса Test.");
     }
 
-    /// <summary>
-    /// Создает тест с начальными значениями.
-    /// </summary>
+    // Создает тест с начальными значениями.
     protected Test() : this("Без названия", DateTime.Today, 100, 0)
     {
     }
 
-    /// <summary>
-    /// Создает тест с заданными параметрами.
-    /// </summary>
+    // Создает тест с заданными параметрами.
     protected Test(string title, DateTime date, int maximumScore, int score)
     {
         // Сначала задается максимум, так как проверка Score зависит от него.
@@ -56,9 +48,7 @@ public abstract class Test
         _createdCount++;
     }
 
-    /// <summary>
-    /// Уникальный номер объекта в пределах текущего запуска программы.
-    /// </summary>
+    // Уникальный номер объекта в пределах текущего запуска программы.
     public int ObjectNumber { get; }
 
     public string Title
@@ -105,28 +95,20 @@ public abstract class Test
         }
     }
 
-    /// <summary>
-    /// Производные классы по-разному определяют успешный результат.
-    /// </summary>
+    // Производные классы по-разному определяют успешный результат.
     public abstract bool IsPassed { get; }
 
-    /// <summary>
-    /// Производные классы формируют понятное текстовое описание результата.
-    /// </summary>
+    // Производные классы формируют понятное текстовое описание результата.
     public abstract string GetResultDescription();
 
-    /// <summary>
-    /// Возвращает общую часть описания объекта.
-    /// </summary>
+    // Возвращает общую часть описания объекта.
     public virtual string GetInfo()
     {
         return $"№ {ObjectNumber}, {Title}, дата {Date:dd.MM.yyyy}, балл {Score}/{MaximumScore}";
     }
 
-    /// <summary>
-    /// Обновляет балл и через out сообщает, пройдена ли проверка.
-    /// Параметр ref показывает передачу переменной по ссылке.
-    /// </summary>
+    // Обновляет балл и через out сообщает, пройдена ли проверка.
+    // Параметр ref показывает передачу переменной по ссылке.
     public void UpdateScore(ref int newScore, out bool passed)
     {
         Score = newScore;
@@ -136,9 +118,7 @@ public abstract class Test
         passed = IsPassed;
     }
 
-    /// <summary>
-    /// Выводит количество созданных объектов всей иерархии.
-    /// </summary>
+    // Выводит количество созданных объектов всей иерархии.
     public static void PrintCreatedCount()
     {
         Console.WriteLine($"Создано объектов контроля: {_createdCount}.");

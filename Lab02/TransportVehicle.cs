@@ -11,24 +11,18 @@
 
 namespace Lab02;
 
-/// <summary>
-/// Базовый класс с общими характеристиками транспортного средства.
-/// </summary>
+// Базовый класс с общими характеристиками транспортного средства.
 public class TransportVehicle
 {
     private double _averageSpeed;
     private int _yearOfManufacture;
 
-    /// <summary>
-    /// Создает транспорт с безопасными начальными значениями.
-    /// </summary>
+    // Создает транспорт с безопасными начальными значениями.
     public TransportVehicle() : this(1, "Не указано", DateTime.Now.Year)
     {
     }
 
-    /// <summary>
-    /// Создает транспорт с заданными общими характеристиками.
-    /// </summary>
+    // Создает транспорт с заданными общими характеристиками.
     public TransportVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
     {
         AverageSpeed = averageSpeed;
@@ -36,9 +30,7 @@ public class TransportVehicle
         YearOfManufacture = yearOfManufacture;
     }
 
-    /// <summary>
-    /// Средняя скорость в километрах в час.
-    /// </summary>
+    // Средняя скорость в километрах в час.
     public double AverageSpeed
     {
         get => _averageSpeed;
@@ -53,14 +45,10 @@ public class TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Название используемого топлива.
-    /// </summary>
+    // Название используемого топлива.
     public string FuelType { get; set; }
 
-    /// <summary>
-    /// Год выпуска транспортного средства.
-    /// </summary>
+    // Год выпуска транспортного средства.
     public int YearOfManufacture
     {
         get => _yearOfManufacture;
@@ -75,10 +63,8 @@ public class TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Возвращает текстовое описание транспортного средства.
-    /// Метод virtual разрешает производным классам изменить результат.
-    /// </summary>
+    // Возвращает текстовое описание транспортного средства.
+    // Метод virtual разрешает производным классам изменить результат.
     public virtual string GetDescription()
     {
         return $"Транспорт: скорость {AverageSpeed:F1} км/ч, топливо {FuelType}, год {YearOfManufacture}";

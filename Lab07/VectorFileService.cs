@@ -13,14 +13,10 @@ using System.Globalization;
 
 namespace Lab07;
 
-/// <summary>
-/// Выполняет файловый ввод и вывод поддерживаемых векторов.
-/// </summary>
+// Выполняет файловый ввод и вывод поддерживаемых векторов.
 public static class VectorFileService
 {
-    /// <summary>
-    /// Записывает количество объектов, их типы и значения в текстовый файл.
-    /// </summary>
+    // Записывает количество объектов, их типы и значения в текстовый файл.
     public static void Write(string path, IEnumerable<object> vectors)
     {
         List<object> vectorList = vectors.ToList();
@@ -55,9 +51,7 @@ public static class VectorFileService
         }
     }
 
-    /// <summary>
-    /// Читает объекты из текстового файла и восстанавливает их типы.
-    /// </summary>
+    // Читает объекты из текстового файла и восстанавливает их типы.
     public static List<object> Read(string path)
     {
         try

@@ -11,14 +11,10 @@
 
 namespace Lab04;
 
-/// <summary>
-/// Выполняет запросы к набору транспорта в автопарке.
-/// </summary>
+// Выполняет запросы к набору транспорта в автопарке.
 public sealed class VehicleParkAnalyzer
 {
-    /// <summary>
-    /// Возвращает только те объекты, фактический тип которых совместим с T.
-    /// </summary>
+    // Возвращает только те объекты, фактический тип которых совместим с T.
     public IEnumerable<T> SelectByType<T>(IEnumerable<TransportVehicle> vehicles)
         where T : TransportVehicle
     {
@@ -32,9 +28,7 @@ public sealed class VehicleParkAnalyzer
         }
     }
 
-    /// <summary>
-    /// Подсчитывает транспорт заданного типа.
-    /// </summary>
+    // Подсчитывает транспорт заданного типа.
     public int CountByType<T>(IEnumerable<TransportVehicle> vehicles)
         where T : TransportVehicle
     {
@@ -48,9 +42,7 @@ public sealed class VehicleParkAnalyzer
         return count;
     }
 
-    /// <summary>
-    /// Подсчитывает места во всех вагонах всех поездов.
-    /// </summary>
+    // Подсчитывает места во всех вагонах всех поездов.
     public int CountAllTrainSeats(IEnumerable<TransportVehicle> vehicles)
     {
         int totalSeats = 0;

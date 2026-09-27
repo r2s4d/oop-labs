@@ -10,9 +10,7 @@
 
 namespace Lab09;
 
-/// <summary>
-/// Испытание с ограниченным количеством попыток.
-/// </summary>
+// Испытание с ограниченным количеством попыток.
 public class Trial : Test
 {
     private int _attempts;

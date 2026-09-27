@@ -11,9 +11,7 @@
 
 namespace Lab04;
 
-/// <summary>
-/// Абстрактный базовый класс всех транспортных средств.
-/// </summary>
+// Абстрактный базовый класс всех транспортных средств.
 public abstract class TransportVehicle
 {
     // Начало общего односвязного списка транспорта.
@@ -44,19 +42,15 @@ public abstract class TransportVehicle
 
     public abstract string GetDescription();
 
-    /// <summary>
-    /// Добавляет объект в начало общего связанного списка.
-    /// </summary>
+    // Добавляет объект в начало общего связанного списка.
     public static void AddToRegistry(TransportVehicle vehicle)
     {
         ArgumentNullException.ThrowIfNull(vehicle);
         _head = new TransportNode(vehicle, _head);
     }
 
-    /// <summary>
-    /// Последовательно возвращает объекты связанного списка.
-    /// Ключевое слово yield позволяет не создавать дополнительную коллекцию.
-    /// </summary>
+    // Последовательно возвращает объекты связанного списка.
+    // Ключевое слово yield позволяет не создавать дополнительную коллекцию.
     public static IEnumerable<TransportVehicle> EnumerateRegistry()
     {
         TransportNode? current = _head;

@@ -11,9 +11,7 @@
 
 namespace Lab10;
 
-/// <summary>
-/// Базовое исключение обобщенного вектора.
-/// </summary>
+// Базовое исключение обобщенного вектора.
 public class VectorException : Exception
 {
     public VectorException(string message) : base(message)
@@ -21,9 +19,7 @@ public class VectorException : Exception
     }
 }
 
-/// <summary>
-/// Возникает при обращении к отсутствующему элементу.
-/// </summary>
+// Возникает при обращении к отсутствующему элементу.
 public sealed class VectorIndexException : VectorException
 {
     public VectorIndexException(int index, int count)
@@ -32,9 +28,7 @@ public sealed class VectorIndexException : VectorException
     }
 }
 
-/// <summary>
-/// Возникает при операции над векторами разного размера.
-/// </summary>
+// Возникает при операции над векторами разного размера.
 public sealed class VectorSizeMismatchException : VectorException
 {
     public VectorSizeMismatchException(int leftCount, int rightCount)

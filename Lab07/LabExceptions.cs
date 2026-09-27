@@ -11,10 +11,8 @@
 
 namespace Lab07;
 
-/// <summary>
-/// Базовое исключение проекта. По нему можно перехватить любую
-/// предусмотренную прикладную ошибку лабораторной работы.
-/// </summary>
+// Базовое исключение проекта. По нему можно перехватить любую
+// предусмотренную прикладную ошибку лабораторной работы.
 public class LabException : Exception
 {
     public LabException(string message) : base(message)
@@ -26,9 +24,7 @@ public class LabException : Exception
     }
 }
 
-/// <summary>
-/// Возникает при попытке создать вектор недопустимого размера.
-/// </summary>
+// Возникает при попытке создать вектор недопустимого размера.
 public sealed class InvalidVectorSizeException : LabException
 {
     public InvalidVectorSizeException(int size)
@@ -37,9 +33,7 @@ public sealed class InvalidVectorSizeException : LabException
     }
 }
 
-/// <summary>
-/// Возникает при обращении за границы вектора.
-/// </summary>
+// Возникает при обращении за границы вектора.
 public sealed class VectorIndexException : LabException
 {
     public VectorIndexException(int index, int count)
@@ -48,9 +42,7 @@ public sealed class VectorIndexException : LabException
     }
 }
 
-/// <summary>
-/// Возникает при операции над векторами разных размеров.
-/// </summary>
+// Возникает при операции над векторами разных размеров.
 public sealed class VectorSizeMismatchException : LabException
 {
     public VectorSizeMismatchException(int leftSize, int rightSize)
@@ -59,9 +51,7 @@ public sealed class VectorSizeMismatchException : LabException
     }
 }
 
-/// <summary>
-/// Возникает, если строка файла не соответствует ожидаемому формату.
-/// </summary>
+// Возникает, если строка файла не соответствует ожидаемому формату.
 public sealed class InvalidVectorDataException : LabException
 {
     public InvalidVectorDataException(string message) : base(message)
@@ -74,9 +64,7 @@ public sealed class InvalidVectorDataException : LabException
     }
 }
 
-/// <summary>
-/// Возникает при ошибке открытия, чтения или записи файла.
-/// </summary>
+// Возникает при ошибке открытия, чтения или записи файла.
 public sealed class VectorFileException : LabException
 {
     public VectorFileException(string message, Exception innerException)
@@ -85,9 +73,7 @@ public sealed class VectorFileException : LabException
     }
 }
 
-/// <summary>
-/// Возникает при создании некорректного времени.
-/// </summary>
+// Возникает при создании некорректного времени.
 public sealed class InvalidTimeException : LabException
 {
     public InvalidTimeException(string message) : base(message)

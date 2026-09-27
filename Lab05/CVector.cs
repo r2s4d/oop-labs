@@ -12,25 +12,19 @@
 
 namespace Lab05;
 
-/// <summary>
-/// Представляет одномерный вектор целых чисел.
-/// </summary>
+// Представляет одномерный вектор целых чисел.
 public class CVector : IEquatable<CVector>
 {
     // Массив является внутренним хранилищем элементов вектора.
     private readonly int[] _items;
 
-    /// <summary>
-    /// Создает пустой вектор.
-    /// </summary>
+    // Создает пустой вектор.
     public CVector()
     {
         _items = [];
     }
 
-    /// <summary>
-    /// Создает вектор указанного размера и заполняет его нулями.
-    /// </summary>
+    // Создает вектор указанного размера и заполняет его нулями.
     public CVector(int size)
     {
         if (size < 0)
@@ -41,32 +35,24 @@ public class CVector : IEquatable<CVector>
         _items = new int[size];
     }
 
-    /// <summary>
-    /// Создает вектор из готовой последовательности чисел.
-    /// </summary>
+    // Создает вектор из готовой последовательности чисел.
     public CVector(IEnumerable<int> items)
     {
         ArgumentNullException.ThrowIfNull(items);
         _items = items.ToArray();
     }
 
-    /// <summary>
-    /// Создает независимую копию другого вектора.
-    /// </summary>
+    // Создает независимую копию другого вектора.
     public CVector(CVector other)
     {
         ArgumentNullException.ThrowIfNull(other);
         _items = (int[])other._items.Clone();
     }
 
-    /// <summary>
-    /// Возвращает количество элементов.
-    /// </summary>
+    // Возвращает количество элементов.
     public int Count => _items.Length;
 
-    /// <summary>
-    /// Индексатор предоставляет доступ к элементу как к элементу массива.
-    /// </summary>
+    // Индексатор предоставляет доступ к элементу как к элементу массива.
     public int this[int index]
     {
         get
@@ -81,9 +67,7 @@ public class CVector : IEquatable<CVector>
         }
     }
 
-    /// <summary>
-    /// Вычитает из каждого элемента левого вектора соответствующий элемент правого.
-    /// </summary>
+    // Вычитает из каждого элемента левого вектора соответствующий элемент правого.
     public static CVector operator -(CVector left, CVector right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -99,9 +83,7 @@ public class CVector : IEquatable<CVector>
         return new CVector(result);
     }
 
-    /// <summary>
-    /// Прибавляет целое число к каждому элементу вектора.
-    /// </summary>
+    // Прибавляет целое число к каждому элементу вектора.
     public static CVector operator +(CVector vector, int value)
     {
         ArgumentNullException.ThrowIfNull(vector);
@@ -115,17 +97,13 @@ public class CVector : IEquatable<CVector>
         return new CVector(result);
     }
 
-    /// <summary>
-    /// Поддерживает запись, в которой число находится слева от вектора.
-    /// </summary>
+    // Поддерживает запись, в которой число находится слева от вектора.
     public static CVector operator +(int value, CVector vector)
     {
         return vector + value;
     }
 
-    /// <summary>
-    /// Проверяет поэлементное равенство двух векторов.
-    /// </summary>
+    // Проверяет поэлементное равенство двух векторов.
     public static bool operator ==(CVector? left, CVector? right)
     {
         if (ReferenceEquals(left, right))
@@ -149,9 +127,7 @@ public class CVector : IEquatable<CVector>
         return true;
     }
 
-    /// <summary>
-    /// Возвращает противоположный результат проверки на равенство.
-    /// </summary>
+    // Возвращает противоположный результат проверки на равенство.
     public static bool operator !=(CVector? left, CVector? right)
     {
         return !(left == right);
@@ -199,10 +175,8 @@ public class CVector : IEquatable<CVector>
         }
     }
 
-    /// <summary>
-    /// Финализатор добавлен для демонстрации требования задания.
-    /// Вектор не содержит неуправляемых ресурсов, поэтому практической необходимости в нем нет.
-    /// </summary>
+    // Финализатор добавлен для демонстрации требования задания.
+    // Вектор не содержит неуправляемых ресурсов, поэтому практической необходимости в нем нет.
     ~CVector()
     {
         Console.WriteLine($"Финализирован вектор размером {Count}.");

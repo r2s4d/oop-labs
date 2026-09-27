@@ -12,9 +12,7 @@
 
 namespace Lab01;
 
-/// <summary>
-/// Представляет время суток и следит за корректностью его компонентов.
-/// </summary>
+// Представляет время суток и следит за корректностью его компонентов.
 public class TimeOfDay
 {
     // Поля закрыты от прямого изменения. Доступ к ним выполняется через свойства.
@@ -22,20 +20,16 @@ public class TimeOfDay
     private int _minutes;
     private int _seconds;
 
-    /// <summary>
-    /// Создает объект со временем 00:00:00.
-    /// </summary>
+    // Создает объект со временем 00:00:00.
     public TimeOfDay() : this(0, 0, 0)
     {
         Console.WriteLine("Вызван конструктор без параметров.");
     }
 
-    /// <summary>
-    /// Создает объект с указанным временем.
-    /// </summary>
-    /// <param name="hours">Часы от 0 до 23.</param>
-    /// <param name="minutes">Минуты от 0 до 59.</param>
-    /// <param name="seconds">Секунды от 0 до 59.</param>
+    // Создает объект с указанным временем.
+    // hours: Часы от 0 до 23.
+    // minutes: Минуты от 0 до 59.
+    // seconds: Секунды от 0 до 59.
     public TimeOfDay(int hours, int minutes, int seconds)
     {
         // Свойства используются вместо прямой записи, чтобы сразу проверить значения.
@@ -46,10 +40,8 @@ public class TimeOfDay
         Console.WriteLine($"Вызван конструктор с параметрами: {ToNumericString()}.");
     }
 
-    /// <summary>
-    /// Создает независимую копию другого объекта времени.
-    /// </summary>
-    /// <param name="other">Объект, значения которого требуется скопировать.</param>
+    // Создает независимую копию другого объекта времени.
+    // other: Объект, значения которого требуется скопировать.
     public TimeOfDay(TimeOfDay other)
     {
         ArgumentNullException.ThrowIfNull(other);
@@ -61,9 +53,7 @@ public class TimeOfDay
         Console.WriteLine($"Вызван конструктор копирования: {ToNumericString()}.");
     }
 
-    /// <summary>
-    /// Возвращает или изменяет часы.
-    /// </summary>
+    // Возвращает или изменяет часы.
     public int Hours
     {
         get => _hours;
@@ -74,9 +64,7 @@ public class TimeOfDay
         }
     }
 
-    /// <summary>
-    /// Возвращает или изменяет минуты.
-    /// </summary>
+    // Возвращает или изменяет минуты.
     public int Minutes
     {
         get => _minutes;
@@ -87,9 +75,7 @@ public class TimeOfDay
         }
     }
 
-    /// <summary>
-    /// Возвращает или изменяет секунды.
-    /// </summary>
+    // Возвращает или изменяет секунды.
     public int Seconds
     {
         get => _seconds;
@@ -100,9 +86,7 @@ public class TimeOfDay
         }
     }
 
-    /// <summary>
-    /// Одновременно устанавливает все части времени.
-    /// </summary>
+    // Одновременно устанавливает все части времени.
     public void SetTime(int hours, int minutes, int seconds)
     {
         // Сначала проверяем все аргументы. При ошибке объект не изменится частично.
@@ -115,17 +99,13 @@ public class TimeOfDay
         _seconds = seconds;
     }
 
-    /// <summary>
-    /// Возвращает строку в формате "15 часов 57 минут 30 секунд".
-    /// </summary>
+    // Возвращает строку в формате "15 часов 57 минут 30 секунд".
     public string ToRussianString()
     {
         return $"{_hours} часов {_minutes} минут {_seconds} секунд";
     }
 
-    /// <summary>
-    /// Возвращает время в 12-часовом формате с обозначением a.m. или p.m.
-    /// </summary>
+    // Возвращает время в 12-часовом формате с обозначением a.m. или p.m.
     public string ToTwelveHourString()
     {
         string period = _hours < 12 ? "a.m." : "p.m.";
@@ -141,17 +121,13 @@ public class TimeOfDay
         return $"{twelveHour} {period} {_minutes} минут {_seconds} секунд";
     }
 
-    /// <summary>
-    /// Возвращает время в привычном цифровом формате.
-    /// </summary>
+    // Возвращает время в привычном цифровом формате.
     public string ToNumericString()
     {
         return $"{_hours:D2}:{_minutes:D2}:{_seconds:D2}";
     }
 
-    /// <summary>
-    /// Проверяет, входит ли число в допустимый закрытый диапазон.
-    /// </summary>
+    // Проверяет, входит ли число в допустимый закрытый диапазон.
     private static void ValidateRange(int value, int minimum, int maximum, string parameterName)
     {
         if (value < minimum || value > maximum)
@@ -163,10 +139,8 @@ public class TimeOfDay
         }
     }
 
-    /// <summary>
-    /// Финализатор демонстрирует уничтожение объекта сборщиком мусора.
-    /// В реальной программе он не нужен, так как класс не хранит неуправляемые ресурсы.
-    /// </summary>
+    // Финализатор демонстрирует уничтожение объекта сборщиком мусора.
+    // В реальной программе он не нужен, так как класс не хранит неуправляемые ресурсы.
     ~TimeOfDay()
     {
         Console.WriteLine($"Финализирован объект времени {ToNumericString()}.");

@@ -10,9 +10,7 @@
 
 namespace Lab03;
 
-/// <summary>
-/// Конкретный вид транспорта, который представляет поезд.
-/// </summary>
+// Конкретный вид транспорта, который представляет поезд.
 public sealed class Train : TransportVehicle
 {
     public Train(
@@ -45,9 +43,7 @@ public sealed class Train : TransportVehicle
         return CarriageCount * PassengersPerCarriage;
     }
 
-    /// <summary>
-    /// Реализует обязательный абстрактный метод базового класса.
-    /// </summary>
+    // Реализует обязательный абстрактный метод базового класса.
     public override string GetDescription()
     {
         return $"Поезд № {TrainNumber}, вагонов {CarriageCount}, мест {GetTotalSeats()}, " +

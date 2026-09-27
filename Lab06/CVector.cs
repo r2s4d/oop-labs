@@ -13,33 +13,25 @@ using System.Collections;
 
 namespace Lab06;
 
-/// <summary>
-/// Обобщенный вектор, способный хранить элементы типа T.
-/// </summary>
+// Обобщенный вектор, способный хранить элементы типа T.
 public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
 {
     private readonly T[] _items;
 
-    /// <summary>
-    /// Создает пустой вектор.
-    /// </summary>
+    // Создает пустой вектор.
     public CVector()
     {
         _items = [];
     }
 
-    /// <summary>
-    /// Создает вектор из переданной последовательности.
-    /// </summary>
+    // Создает вектор из переданной последовательности.
     public CVector(IEnumerable<T> items)
     {
         ArgumentNullException.ThrowIfNull(items);
         _items = items.ToArray();
     }
 
-    /// <summary>
-    /// Создает независимую копию массива ссылок или значений.
-    /// </summary>
+    // Создает независимую копию массива ссылок или значений.
     public CVector(CVector<T> other)
     {
         ArgumentNullException.ThrowIfNull(other);
@@ -48,9 +40,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
 
     public int Count => _items.Length;
 
-    /// <summary>
-    /// Предоставляет доступ к элементу по индексу.
-    /// </summary>
+    // Предоставляет доступ к элементу по индексу.
     public T this[int index]
     {
         get
@@ -65,11 +55,9 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
     }
 
-    /// <summary>
-    /// Вычитает соответствующие элементы двух векторов.
-    /// dynamic используется потому, что не каждый T имеет арифметический оператор.
-    /// Ошибка понятным образом сообщается во время выполнения.
-    /// </summary>
+    // Вычитает соответствующие элементы двух векторов.
+    // dynamic используется потому, что не каждый T имеет арифметический оператор.
+    // Ошибка понятным образом сообщается во время выполнения.
     public static CVector<T> operator -(CVector<T> left, CVector<T> right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -99,10 +87,8 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return new CVector<T>(result);
     }
 
-    /// <summary>
-    /// Прибавляет целое число к каждому элементу.
-    /// Пользовательский тип может поддержать операцию собственной перегрузкой.
-    /// </summary>
+    // Прибавляет целое число к каждому элементу.
+    // Пользовательский тип может поддержать операцию собственной перегрузкой.
     public static CVector<T> operator +(CVector<T> vector, int value)
     {
         ArgumentNullException.ThrowIfNull(vector);

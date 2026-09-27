@@ -11,24 +11,18 @@
 
 namespace Lab02;
 
-/// <summary>
-/// Представляет поезд и хранит данные о его составе.
-/// </summary>
+// Представляет поезд и хранит данные о его составе.
 public class Train : TransportVehicle
 {
     private int _carriageCount;
     private int _passengersPerCarriage;
 
-    /// <summary>
-    /// Создает поезд со стандартными значениями.
-    /// </summary>
+    // Создает поезд со стандартными значениями.
     public Train() : this("Не указан", 1, 1, 1, "Электричество", DateTime.Now.Year)
     {
     }
 
-    /// <summary>
-    /// Создает поезд с заданными характеристиками.
-    /// </summary>
+    // Создает поезд с заданными характеристиками.
     public Train(
         string trainNumber,
         int carriageCount,
@@ -43,14 +37,10 @@ public class Train : TransportVehicle
         PassengersPerCarriage = passengersPerCarriage;
     }
 
-    /// <summary>
-    /// Номер поезда.
-    /// </summary>
+    // Номер поезда.
     public string TrainNumber { get; set; }
 
-    /// <summary>
-    /// Количество вагонов в составе.
-    /// </summary>
+    // Количество вагонов в составе.
     public int CarriageCount
     {
         get => _carriageCount;
@@ -65,9 +55,7 @@ public class Train : TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Количество пассажиров, которое помещается в одном вагоне.
-    /// </summary>
+    // Количество пассажиров, которое помещается в одном вагоне.
     public int PassengersPerCarriage
     {
         get => _passengersPerCarriage;
@@ -82,17 +70,13 @@ public class Train : TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Возвращает общее количество пассажирских мест в поезде.
-    /// </summary>
+    // Возвращает общее количество пассажирских мест в поезде.
     public int GetTotalSeats()
     {
         return CarriageCount * PassengersPerCarriage;
     }
 
-    /// <summary>
-    /// Дополняет общее описание сведениями о поезде.
-    /// </summary>
+    // Дополняет общее описание сведениями о поезде.
     public override string GetDescription()
     {
         return $"Поезд № {TrainNumber}, вагонов {CarriageCount}, мест {GetTotalSeats()}, " + base.GetDescription();

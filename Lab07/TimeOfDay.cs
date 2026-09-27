@@ -11,9 +11,7 @@
 
 namespace Lab07;
 
-/// <summary>
-/// Пользовательский тип времени для обобщенного вектора.
-/// </summary>
+// Пользовательский тип времени для обобщенного вектора.
 public sealed class TimeOfDay
 {
     public TimeOfDay(int hours, int minutes, int seconds)
@@ -34,9 +32,7 @@ public sealed class TimeOfDay
 
     public int Seconds { get; }
 
-    /// <summary>
-    /// Создает объект времени из строки формата ЧЧ:ММ:СС.
-    /// </summary>
+    // Создает объект времени из строки формата ЧЧ:ММ:СС.
     public static TimeOfDay Parse(string text)
     {
         string[] parts = text.Split(':');

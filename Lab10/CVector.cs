@@ -15,26 +15,20 @@ using System.Numerics;
 
 namespace Lab10;
 
-/// <summary>
-/// Обобщенный вектор числовых элементов.
-/// Ограничение INumber позволяет выполнять арифметику без dynamic.
-/// </summary>
+// Обобщенный вектор числовых элементов.
+// Ограничение INumber позволяет выполнять арифметику без dynamic.
 public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     where T : INumber<T>
 {
     private readonly T[] _items;
 
-    /// <summary>
-    /// Создает пустой вектор.
-    /// </summary>
+    // Создает пустой вектор.
     public CVector()
     {
         _items = [];
     }
 
-    /// <summary>
-    /// Создает вектор указанного размера и заполняет его нулями типа T.
-    /// </summary>
+    // Создает вектор указанного размера и заполняет его нулями типа T.
     public CVector(int size)
     {
         if (size < 0)
@@ -46,18 +40,14 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         Array.Fill(_items, T.Zero);
     }
 
-    /// <summary>
-    /// Создает вектор из последовательности элементов.
-    /// </summary>
+    // Создает вектор из последовательности элементов.
     public CVector(IEnumerable<T> items)
     {
         ArgumentNullException.ThrowIfNull(items);
         _items = items.ToArray();
     }
 
-    /// <summary>
-    /// Создает независимую копию другого вектора.
-    /// </summary>
+    // Создает независимую копию другого вектора.
     public CVector(CVector<T> other)
     {
         ArgumentNullException.ThrowIfNull(other);
@@ -66,9 +56,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
 
     public int Count => _items.Length;
 
-    /// <summary>
-    /// Индексатор предоставляет проверяемый доступ к элементам.
-    /// </summary>
+    // Индексатор предоставляет проверяемый доступ к элементам.
     public T this[int index]
     {
         get
@@ -83,9 +71,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
     }
 
-    /// <summary>
-    /// Вычисляет поэлементную разность двух векторов.
-    /// </summary>
+    // Вычисляет поэлементную разность двух векторов.
     public static CVector<T> operator -(CVector<T> left, CVector<T> right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -101,9 +87,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return new CVector<T>(result);
     }
 
-    /// <summary>
-    /// Прибавляет скаляр к каждому элементу вектора.
-    /// </summary>
+    // Прибавляет скаляр к каждому элементу вектора.
     public static CVector<T> operator +(CVector<T> vector, T value)
     {
         ArgumentNullException.ThrowIfNull(vector);
@@ -117,9 +101,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return new CVector<T>(result);
     }
 
-    /// <summary>
-    /// Поддерживает сложение, когда скаляр записан слева.
-    /// </summary>
+    // Поддерживает сложение, когда скаляр записан слева.
     public static CVector<T> operator +(T value, CVector<T> vector)
     {
         return vector + value;
@@ -153,10 +135,8 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return !(left == right);
     }
 
-    /// <summary>
-    /// Заменяет элемент. Отрицательный индекс отсчитывается от конца.
-    /// Нормализованный индекс возвращается через ref, старое значение через out.
-    /// </summary>
+    // Заменяет элемент. Отрицательный индекс отсчитывается от конца.
+    // Нормализованный индекс возвращается через ref, старое значение через out.
     public void ReplaceAt(ref int index, T newValue, out T previousValue)
     {
         if (index < 0)
@@ -169,9 +149,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         _items[index] = newValue;
     }
 
-    /// <summary>
-    /// Проверяет объект оператором is и формирует описание через out.
-    /// </summary>
+    // Проверяет объект оператором is и формирует описание через out.
     public static bool TryDescribe(object? value, out string description)
     {
         if (value is CVector<T> vector)
@@ -239,10 +217,8 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
     }
 
-    /// <summary>
-    /// Финализатор включен по условию лабораторной работы.
-    /// Управляемый массив не требует ручного освобождения памяти.
-    /// </summary>
+    // Финализатор включен по условию лабораторной работы.
+    // Управляемый массив не требует ручного освобождения памяти.
     ~CVector()
     {
         Console.WriteLine($"Финализирован CVector<{typeof(T).Name}> размером {Count}.");

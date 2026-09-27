@@ -12,10 +12,8 @@
 
 namespace Lab03;
 
-/// <summary>
-/// Абстрактная основа иерархии транспортных средств.
-/// Создать объект этого класса напрямую нельзя.
-/// </summary>
+// Абстрактная основа иерархии транспортных средств.
+// Создать объект этого класса напрямую нельзя.
 public abstract class TransportVehicle
 {
     // Ссылка на первый узел общего связанного списка.
@@ -25,9 +23,7 @@ public abstract class TransportVehicle
     private double _averageSpeed;
     private int _yearOfManufacture;
 
-    /// <summary>
-    /// Создает транспорт с общими характеристиками.
-    /// </summary>
+    // Создает транспорт с общими характеристиками.
     protected TransportVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
     {
         AverageSpeed = averageSpeed;
@@ -37,9 +33,7 @@ public abstract class TransportVehicle
         YearOfManufacture = yearOfManufacture;
     }
 
-    /// <summary>
-    /// Средняя скорость транспорта.
-    /// </summary>
+    // Средняя скорость транспорта.
     public double AverageSpeed
     {
         get => _averageSpeed;
@@ -54,14 +48,10 @@ public abstract class TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Тип топлива или источник энергии.
-    /// </summary>
+    // Тип топлива или источник энергии.
     public string FuelType { get; }
 
-    /// <summary>
-    /// Год выпуска транспортного средства.
-    /// </summary>
+    // Год выпуска транспортного средства.
     public int YearOfManufacture
     {
         get => _yearOfManufacture;
@@ -76,14 +66,10 @@ public abstract class TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Производный класс обязан сформировать собственное описание объекта.
-    /// </summary>
+    // Производный класс обязан сформировать собственное описание объекта.
     public abstract string GetDescription();
 
-    /// <summary>
-    /// Добавляет транспорт в начало общего связанного списка.
-    /// </summary>
+    // Добавляет транспорт в начало общего связанного списка.
     public static void AddToRegistry(TransportVehicle vehicle)
     {
         ArgumentNullException.ThrowIfNull(vehicle);
@@ -93,10 +79,8 @@ public abstract class TransportVehicle
         _head = new TransportNode(vehicle, _head);
     }
 
-    /// <summary>
-    /// Выводит все объекты из общего связанного списка.
-    /// Метод вызывается через имя класса, так как он статический.
-    /// </summary>
+    // Выводит все объекты из общего связанного списка.
+    // Метод вызывается через имя класса, так как он статический.
     public static void ShowRegistry()
     {
         if (_head is null)
@@ -117,10 +101,8 @@ public abstract class TransportVehicle
         }
     }
 
-    /// <summary>
-    /// Внутренний узел односвязного списка.
-    /// Пользователю класса не требуется работать с узлами напрямую.
-    /// </summary>
+    // Внутренний узел односвязного списка.
+    // Пользователю класса не требуется работать с узлами напрямую.
     private sealed class TransportNode
     {
         public TransportNode(TransportVehicle value, TransportNode? next)

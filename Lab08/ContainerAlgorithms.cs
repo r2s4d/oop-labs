@@ -11,14 +11,10 @@
 
 namespace Lab08;
 
-/// <summary>
-/// Содержит вспомогательные обобщенные операции над списками.
-/// </summary>
+// Содержит вспомогательные обобщенные операции над списками.
 public static class ContainerAlgorithms
 {
-    /// <summary>
-    /// Удаляет не более count элементов, расположенных после заданного индекса.
-    /// </summary>
+    // Удаляет не более count элементов, расположенных после заданного индекса.
     public static void RemoveAfter<T>(List<T> items, int index, int count)
     {
         ArgumentNullException.ThrowIfNull(items);
@@ -43,9 +39,7 @@ public static class ContainerAlgorithms
         }
     }
 
-    /// <summary>
-    /// Выводит элементы контейнера в одну строку.
-    /// </summary>
+    // Выводит элементы контейнера в одну строку.
     public static void Print<T>(string title, IEnumerable<T> items)
     {
         Console.WriteLine($"{title}: [{string.Join(", ", items)}]");
