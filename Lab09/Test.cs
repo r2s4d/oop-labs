@@ -12,9 +12,11 @@
 namespace Lab09;
 
 // Абстрактная основа для всех форм проверки знаний.
+// abstract class: объект Test создать нельзя, создаются только наследники (единичное наследование, поэтому не интерфейс).
 public abstract class Test
 {
     // Поля являются общими для всего класса, а не для отдельного объекта.
+    // static: одно значение на весь класс. Подчеркивание в имени только обозначает закрытое поле.
     private static int _createdCount;
     private static int _nextObjectNumber;
 
@@ -23,6 +25,7 @@ public abstract class Test
     private int _score;
 
     // Статический конструктор выполняется один раз перед первым использованием класса.
+    // Без модификатора доступа и без параметров, вызывается автоматически.
     static Test()
     {
         _createdCount = 0;
@@ -31,6 +34,7 @@ public abstract class Test
     }
 
     // Создает тест с начальными значениями.
+    // Конструктор без параметров, через this(...) вызывает конструктор с параметрами. protected: только для наследников.
     protected Test() : this("Без названия", DateTime.Today, 100, 0)
     {
     }
@@ -44,6 +48,7 @@ public abstract class Test
         MaximumScore = maximumScore;
         Score = score;
 
+        // Номер объекта берется из статического счетчика, затем счетчик растет на единицу.
         ObjectNumber = _nextObjectNumber++;
         _createdCount++;
     }
@@ -51,6 +56,7 @@ public abstract class Test
     // Уникальный номер объекта в пределах текущего запуска программы.
     public int ObjectNumber { get; }
 
+    // Свойство с get и set: set проверяет значение и бросает исключение при ошибке.
     public string Title
     {
         get => _title;
@@ -96,12 +102,15 @@ public abstract class Test
     }
 
     // Производные классы по-разному определяют успешный результат.
+    // abstract-свойство без тела, override в Exam, FinalExam, OopExam, Trial.
     public abstract bool IsPassed { get; }
 
     // Производные классы формируют понятное текстовое описание результата.
+    // abstract-метод без тела, override в Exam, FinalExam, OopExam, Trial.
     public abstract string GetResultDescription();
 
     // Возвращает общую часть описания объекта.
+    // virtual: есть готовая версия, наследники могут дополнить ее через override и base.GetInfo().
     public virtual string GetInfo()
     {
         return $"№ {ObjectNumber}, {Title}, дата {Date:dd.MM.yyyy}, балл {Score}/{MaximumScore}";
@@ -109,6 +118,7 @@ public abstract class Test
 
     // Обновляет балл и через out сообщает, пройдена ли проверка.
     // Параметр ref показывает передачу переменной по ссылке.
+    // ref: значение нужно задать до вызова, метод может его изменить. out: метод обязан сам его присвоить.
     public void UpdateScore(ref int newScore, out bool passed)
     {
         Score = newScore;
@@ -119,6 +129,7 @@ public abstract class Test
     }
 
     // Выводит количество созданных объектов всей иерархии.
+    // Статический метод из задания: вызывается через класс, Test.PrintCreatedCount().
     public static void PrintCreatedCount()
     {
         Console.WriteLine($"Создано объектов контроля: {_createdCount}.");

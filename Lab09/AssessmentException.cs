@@ -12,6 +12,7 @@
 namespace Lab09;
 
 // Описывает ошибку при создании или изменении формы контроля.
+// Свое исключение: наследник Exception, base(message) передает текст ошибки родителю.
 public sealed class AssessmentException : Exception
 {
     public AssessmentException(string message) : base(message)

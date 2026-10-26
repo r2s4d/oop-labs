@@ -17,6 +17,7 @@ namespace Lab10;
 
 // Обобщенный вектор числовых элементов.
 // Ограничение INumber позволяет выполнять арифметику без dynamic.
+// where T : INumber<T> значит "T может быть только числовым типом" (int, double и т.д.), поэтому - и + работают для T.
 public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     where T : INumber<T>
 {
@@ -37,6 +38,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
 
         _items = new T[size];
+        // T.Zero это ноль того числового типа, который подставлен вместо T.
         Array.Fill(_items, T.Zero);
     }
 
@@ -57,6 +59,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     public int Count => _items.Length;
 
     // Индексатор предоставляет проверяемый доступ к элементам.
+    // Индексатор: запись this[int index] делает возможным v[2] и v[2] = 5.
     public T this[int index]
     {
         get
@@ -72,6 +75,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     }
 
     // Вычисляет поэлементную разность двух векторов.
+    // Перегрузка операции: static operator со знаком "-".
     public static CVector<T> operator -(CVector<T> left, CVector<T> right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -137,6 +141,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
 
     // Заменяет элемент. Отрицательный индекс отсчитывается от конца.
     // Нормализованный индекс возвращается через ref, старое значение через out.
+    // ref: параметр index читается и меняется внутри метода. out: previousValue метод обязан присвоить.
     public void ReplaceAt(ref int index, T newValue, out T previousValue)
     {
         if (index < 0)
@@ -152,6 +157,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     // Проверяет объект оператором is и формирует описание через out.
     public static bool TryDescribe(object? value, out string description)
     {
+        // Оператор is проверяет реальный тип объекта и сразу создает переменную vector нужного типа.
         if (value is CVector<T> vector)
         {
             description = $"Объект является CVector<{typeof(T).Name}> размером {vector.Count}.";
@@ -183,6 +189,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return hash.ToHashCode();
     }
 
+    // Реализация IEnumerable<T>: благодаря ей вектор можно перебирать через foreach.
     public IEnumerator<T> GetEnumerator()
     {
         foreach (T item in _items)
@@ -217,6 +224,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
     }
 
+    // Финализатор (~) это аналог деструктора из задания, вызывается сборщиком мусора.
     // Финализатор включен по условию лабораторной работы.
     // Управляемый массив не требует ручного освобождения памяти.
     ~CVector()

@@ -13,18 +13,21 @@ namespace Lab07;
 
 // Базовое исключение проекта. По нему можно перехватить любую
 // предусмотренную прикладную ошибку лабораторной работы.
+// Свое исключение это обычный класс-наследник от Exception, а base(message) передает текст ошибки родителю.
 public class LabException : Exception
 {
     public LabException(string message) : base(message)
     {
     }
 
+    // innerException хранит исходную системную ошибку внутри нашей, чтобы не потерять причину.
     public LabException(string message, Exception innerException) : base(message, innerException)
     {
     }
 }
 
 // Возникает при попытке создать вектор недопустимого размера.
+// Наследует LabException, sealed запрещает наследоваться от него дальше.
 public sealed class InvalidVectorSizeException : LabException
 {
     public InvalidVectorSizeException(int size)

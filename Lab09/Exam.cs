@@ -12,6 +12,7 @@
 namespace Lab09;
 
 // Экзамен с названием предмета и проходным баллом.
+// Двоеточие значит наследование: Exam наследует абстрактный Test.
 public class Exam : Test
 {
     private int _passingScore;
@@ -27,6 +28,7 @@ public class Exam : Test
         int score,
         string subject,
         int passingScore)
+        // base(...) передает общие данные в конструктор Test.
         : base(title, date, maximumScore, score)
     {
         Subject = subject;
@@ -49,13 +51,16 @@ public class Exam : Test
         }
     }
 
+    // override абстрактного свойства из Test.
     public override bool IsPassed => Score >= PassingScore;
 
+    // override абстрактного метода из Test.
     public override string GetResultDescription()
     {
         return IsPassed ? "зачтено: экзамен сдан" : "не зачтено: экзамен не сдан";
     }
 
+    // override виртуального метода из Test, base.GetInfo() берет общую часть описания.
     public override string GetInfo()
     {
         return $"Экзамен по предмету '{Subject}': {base.GetInfo()}, {GetResultDescription()}";
@@ -63,6 +68,7 @@ public class Exam : Test
 }
 
 // Выпускной экзамен дополнительно хранит номер протокола комиссии.
+// FinalExam наследует Exam, то есть цепочка Test, Exam, FinalExam.
 public class FinalExam : Exam
 {
     public FinalExam()
@@ -85,6 +91,7 @@ public class FinalExam : Exam
 
     public string ProtocolNumber { get; set; }
 
+    // Повторный override того же свойства на уровне FinalExam.
     public override bool IsPassed => Score >= PassingScore;
 
     public override string GetResultDescription()

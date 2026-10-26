@@ -12,6 +12,7 @@
 namespace Lab10;
 
 // Базовое исключение обобщенного вектора.
+// Свое исключение: наследник Exception, base(message) передает текст ошибки родителю.
 public class VectorException : Exception
 {
     public VectorException(string message) : base(message)
@@ -20,6 +21,7 @@ public class VectorException : Exception
 }
 
 // Возникает при обращении к отсутствующему элементу.
+// Наследует VectorException, sealed запрещает наследоваться от него дальше.
 public sealed class VectorIndexException : VectorException
 {
     public VectorIndexException(int index, int count)

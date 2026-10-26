@@ -11,6 +11,7 @@
 namespace Lab09;
 
 // Испытание с ограниченным количеством попыток.
+// Наследует Test напрямую, это вторая ветка иерархии рядом с Exam.
 public class Trial : Test
 {
     private int _attempts;
@@ -39,6 +40,7 @@ public class Trial : Test
         }
     }
 
+    // override абстрактного свойства из Test: испытание сдано, если набрано не меньше половины баллов.
     public override bool IsPassed => Score >= MaximumScore / 2.0;
 
     public override string GetResultDescription()

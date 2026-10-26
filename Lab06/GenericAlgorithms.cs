@@ -16,6 +16,7 @@ public static class GenericAlgorithms
 {
     // Находит элемент с наименьшим расстоянием до заданного значения.
     // Способ вычисления расстояния передается отдельной функцией.
+    // Шаблон функции: <T> это параметр типа, Func<T, T, double> это функция "два элемента на входе, число на выходе".
     public static T FindClosest<T>(
         IEnumerable<T> source,
         T target,

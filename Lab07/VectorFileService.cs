@@ -14,6 +14,7 @@ using System.Globalization;
 namespace Lab07;
 
 // Выполняет файловый ввод и вывод поддерживаемых векторов.
+// static class: класс только из статических методов, объект создавать не нужно.
 public static class VectorFileService
 {
     // Записывает количество объектов, их типы и значения в текстовый файл.
@@ -23,11 +24,13 @@ public static class VectorFileService
 
         try
         {
+            // using сам закроет файл при выходе из блока, даже если случится ошибка.
             using StreamWriter writer = new(path, false);
             writer.WriteLine(vectorList.Count);
 
             foreach (object vector in vectorList)
             {
+                // switch выбирает строку по реальному типу вектора (CVector<int>, CVector<double>, CVector<TimeOfDay>).
                 string line = vector switch
                 {
                     CVector<int> integers => "int|" + string.Join(";", integers),
@@ -41,6 +44,7 @@ public static class VectorFileService
                 writer.WriteLine(line);
             }
         }
+        // Системную ошибку файла заворачиваем в свое исключение VectorFileException.
         catch (IOException exception)
         {
             throw new VectorFileException($"Не удалось записать файл '{path}'.", exception);
@@ -87,6 +91,7 @@ public static class VectorFileService
         catch (LabException)
         {
             // Прикладное исключение уже содержит понятное сообщение.
+            // throw; без аргументов пробрасывает то же исключение дальше без потери данных.
             throw;
         }
         catch (IOException exception)
@@ -97,6 +102,7 @@ public static class VectorFileService
         {
             throw new VectorFileException($"Нет доступа для чтения файла '{path}'.", exception);
         }
+        // when добавляет условие: этот catch сработает только для FormatException и OverflowException.
         catch (Exception exception) when (exception is FormatException or OverflowException)
         {
             throw new InvalidVectorDataException("В файле встретилось некорректное числовое значение.", exception);

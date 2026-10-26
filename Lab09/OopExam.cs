@@ -12,6 +12,7 @@
 namespace Lab09;
 
 // Конкретный выпускной экзамен по объектно-ориентированному программированию.
+// sealed делает класс бесплодным: от OopExam наследоваться нельзя (требование варианта).
 public sealed class OopExam : FinalExam
 {
     public OopExam()

@@ -14,6 +14,8 @@ using System.Collections;
 namespace Lab06;
 
 // Обобщенный вектор, способный хранить элементы типа T.
+// CVector<T> это шаблон класса: вместо T подставляется int, double или TimeOfDay.
+// IEnumerable<T> позволяет перебирать вектор через foreach.
 public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
 {
     private readonly T[] _items;
@@ -41,6 +43,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     public int Count => _items.Length;
 
     // Предоставляет доступ к элементу по индексу.
+    // Индексатор: делает возможной запись v[2].
     public T this[int index]
     {
         get
@@ -58,6 +61,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
     // Вычитает соответствующие элементы двух векторов.
     // dynamic используется потому, что не каждый T имеет арифметический оператор.
     // Ошибка понятным образом сообщается во время выполнения.
+    // Перегрузка операции "-": static operator. Тип dynamic проверяется только при запуске программы.
     public static CVector<T> operator -(CVector<T> left, CVector<T> right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -122,6 +126,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
             return false;
         }
 
+        // Стандартный способ сравнить два значения любого типа T (для TimeOfDay он вызовет Equals).
         EqualityComparer<T> comparer = EqualityComparer<T>.Default;
         for (int index = 0; index < left.Count; index++)
         {
@@ -160,6 +165,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         return hash.ToHashCode();
     }
 
+    // Реализация интерфейса IEnumerable<T>, это не override. yield return отдает элементы по одному.
     public IEnumerator<T> GetEnumerator()
     {
         foreach (T item in _items)
@@ -168,6 +174,7 @@ public class CVector<T> : IEnumerable<T>, IEquatable<CVector<T>>
         }
     }
 
+    // Явная реализация старого необобщенного интерфейса, нужна компилятору, вызывает метод выше.
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();

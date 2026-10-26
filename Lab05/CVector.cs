@@ -13,18 +13,22 @@
 namespace Lab05;
 
 // Представляет одномерный вектор целых чисел.
+// IEquatable<CVector> это интерфейс: класс обещает метод Equals для сравнения по значению.
 public class CVector : IEquatable<CVector>
 {
     // Массив является внутренним хранилищем элементов вектора.
+    // Подчеркивание в имени _items только обозначает закрытое поле, readonly значит "задается один раз в конструкторе".
     private readonly int[] _items;
 
     // Создает пустой вектор.
+    // Конструктор без параметров.
     public CVector()
     {
         _items = [];
     }
 
     // Создает вектор указанного размера и заполняет его нулями.
+    // Конструктор с параметром: размер.
     public CVector(int size)
     {
         if (size < 0)
@@ -43,6 +47,7 @@ public class CVector : IEquatable<CVector>
     }
 
     // Создает независимую копию другого вектора.
+    // Конструктор копирования: принимает объект своего же класса.
     public CVector(CVector other)
     {
         ArgumentNullException.ThrowIfNull(other);
@@ -50,9 +55,11 @@ public class CVector : IEquatable<CVector>
     }
 
     // Возвращает количество элементов.
+    // Стрелка => это короткая запись свойства только для чтения.
     public int Count => _items.Length;
 
     // Индексатор предоставляет доступ к элементу как к элементу массива.
+    // Это перегрузка операции []: запись this[int index], работает v[2] и v[2] = 100.
     public int this[int index]
     {
         get
@@ -68,6 +75,7 @@ public class CVector : IEquatable<CVector>
     }
 
     // Вычитает из каждого элемента левого вектора соответствующий элемент правого.
+    // Перегрузка операции: метод static с ключевым словом operator и знаком операции.
     public static CVector operator -(CVector left, CVector right)
     {
         ArgumentNullException.ThrowIfNull(left);
@@ -128,6 +136,7 @@ public class CVector : IEquatable<CVector>
     }
 
     // Возвращает противоположный результат проверки на равенство.
+    // != из задания, C# требует перегружать его в паре с ==.
     public static bool operator !=(CVector? left, CVector? right)
     {
         return !(left == right);
@@ -138,6 +147,7 @@ public class CVector : IEquatable<CVector>
         return this == other;
     }
 
+    // override методов базового класса Object, чтобы == и Equals работали одинаково.
     public override bool Equals(object? obj)
     {
         return obj is CVector vector && this == vector;
@@ -175,6 +185,7 @@ public class CVector : IEquatable<CVector>
         }
     }
 
+    // Финализатор (~) это аналог деструктора из задания, вызывается сборщиком мусора.
     // Финализатор добавлен для демонстрации требования задания.
     // Вектор не содержит неуправляемых ресурсов, поэтому практической необходимости в нем нет.
     ~CVector()
