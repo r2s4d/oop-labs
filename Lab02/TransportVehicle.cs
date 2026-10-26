@@ -18,11 +18,13 @@ public class TransportVehicle
     private int _yearOfManufacture;
 
     // Создает транспорт с безопасными начальными значениями.
+    // Конструктор без параметров, через this(...) вызывает конструктор ниже.
     public TransportVehicle() : this(1, "Не указано", DateTime.Now.Year)
     {
     }
 
     // Создает транспорт с заданными общими характеристиками.
+    // Конструктор с параметрами, значения идут через свойства, поэтому есть проверка.
     public TransportVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
     {
         AverageSpeed = averageSpeed;
@@ -31,6 +33,7 @@ public class TransportVehicle
     }
 
     // Средняя скорость в километрах в час.
+    // Свойство, get отдает значение поля _averageSpeed, set проверяет и записывает.
     public double AverageSpeed
     {
         get => _averageSpeed;
@@ -65,6 +68,7 @@ public class TransportVehicle
 
     // Возвращает текстовое описание транспортного средства.
     // Метод virtual разрешает производным классам изменить результат.
+    // virtual, наследники переопределяют метод через override (см. Car.cs, Train.cs).
     public virtual string GetDescription()
     {
         return $"Транспорт: скорость {AverageSpeed:F1} км/ч, топливо {FuelType}, год {YearOfManufacture}";

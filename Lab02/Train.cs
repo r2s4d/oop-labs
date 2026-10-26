@@ -12,6 +12,7 @@
 namespace Lab02;
 
 // Представляет поезд и хранит данные о его составе.
+// Наследует TransportVehicle, добавляет номер, вагоны и места в вагоне.
 public class Train : TransportVehicle
 {
     private int _carriageCount;
@@ -30,6 +31,7 @@ public class Train : TransportVehicle
         double averageSpeed,
         string fuelType,
         int yearOfManufacture)
+        // base(...) передает общие данные в конструктор базового класса.
         : base(averageSpeed, fuelType, yearOfManufacture)
     {
         TrainNumber = trainNumber;
@@ -77,6 +79,7 @@ public class Train : TransportVehicle
     }
 
     // Дополняет общее описание сведениями о поезде.
+    // override переопределяет virtual метод базы, base.GetDescription() берет текст родителя.
     public override string GetDescription()
     {
         return $"Поезд № {TrainNumber}, вагонов {CarriageCount}, мест {GetTotalSeats()}, " + base.GetDescription();

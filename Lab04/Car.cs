@@ -11,6 +11,7 @@
 namespace Lab04;
 
 // Автомобиль с маркой и регистрационным номером.
+// Наследует абстрактный GroundVehicle, sealed запрещает наследование от Car.
 public sealed class Car : GroundVehicle
 {
     public Car(
@@ -29,8 +30,10 @@ public sealed class Car : GroundVehicle
 
     public string RegistrationNumber { get; }
 
+    // override абстрактного свойства из GroundVehicle.
     public override string RoadType => "Автомобильная дорога";
 
+    // override абстрактного метода из TransportVehicle.
     public override string GetDescription()
     {
         return $"Автомобиль {Brand}, номер {RegistrationNumber}, среда: {MovementEnvironment} ({RoadType})";

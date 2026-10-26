@@ -15,6 +15,8 @@ namespace Lab04;
 public sealed class VehicleParkAnalyzer
 {
     // Возвращает только те объекты, фактический тип которых совместим с T.
+    // Метод-итератор (yield return) и обобщенный: T подставляется при вызове, например SelectByType<Train>.
+    // where T : TransportVehicle разрешает подставлять только типы нашей иерархии.
     public IEnumerable<T> SelectByType<T>(IEnumerable<TransportVehicle> vehicles)
         where T : TransportVehicle
     {
@@ -23,6 +25,7 @@ public sealed class VehicleParkAnalyzer
             // Оператор is одновременно проверяет тип и безопасно создает переменную.
             if (vehicle is T requiredVehicle)
             {
+                // Динамическая идентификация типа: is проверяет реальный тип объекта во время выполнения.
                 yield return requiredVehicle;
             }
         }
@@ -43,6 +46,7 @@ public sealed class VehicleParkAnalyzer
     }
 
     // Подсчитывает места во всех вагонах всех поездов.
+    // Берем только поезда (SelectByType<Train>), потому что GetTotalSeats есть только у Train.
     public int CountAllTrainSeats(IEnumerable<TransportVehicle> vehicles)
     {
         int totalSeats = 0;

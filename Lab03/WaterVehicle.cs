@@ -16,13 +16,14 @@ public abstract class WaterVehicle : TransportVehicle
 {
     private double _loadCapacityKg;
 
+    // Конструктор передает общие данные в базовый класс через base(...).
     protected WaterVehicle(double averageSpeed, string fuelType, int yearOfManufacture, double loadCapacityKg)
         : base(averageSpeed, fuelType, yearOfManufacture)
     {
         LoadCapacityKg = loadCapacityKg;
     }
 
-    // Реализует абстрактное свойство базового класса для всех видов водного транспорта.
+    // Реализует (override) абстрактное свойство базового класса для всех видов водного транспорта.
     public override string MovementEnvironment => "Вода";
 
     // Грузоподъемность в килограммах.

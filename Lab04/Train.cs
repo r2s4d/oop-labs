@@ -11,6 +11,7 @@
 namespace Lab04;
 
 // Поезд с количеством вагонов и мест в каждом вагоне.
+// Наследует абстрактный GroundVehicle, sealed запрещает наследование от Train.
 public sealed class Train : GroundVehicle
 {
     public Train(
@@ -43,8 +44,10 @@ public sealed class Train : GroundVehicle
         return CarriageCount * PassengersPerCarriage;
     }
 
+    // override абстрактного свойства из GroundVehicle.
     public override string RoadType => "Железная дорога";
 
+    // override абстрактного метода из TransportVehicle.
     public override string GetDescription()
     {
         return $"Поезд № {TrainNumber}, среда: {MovementEnvironment} ({RoadType}), вагонов {CarriageCount}, мест {GetTotalSeats()}";

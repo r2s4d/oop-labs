@@ -11,6 +11,7 @@
 namespace Lab02;
 
 // Представляет автомобиль и наследует общие свойства транспорта.
+// Двоеточие после имени класса означает наследование от TransportVehicle.
 public class Car : TransportVehicle
 {
     // Создает автомобиль со стандартными значениями.
@@ -25,6 +26,7 @@ public class Car : TransportVehicle
         double averageSpeed,
         string fuelType,
         int yearOfManufacture)
+        // base(...) передает общие данные в конструктор базового класса.
         : base(averageSpeed, fuelType, yearOfManufacture)
     {
         Brand = brand;
@@ -38,6 +40,7 @@ public class Car : TransportVehicle
     public string RegistrationNumber { get; set; }
 
     // Дополняет общее описание сведениями об автомобиле.
+    // override переопределяет virtual метод базы, base.GetDescription() берет текст родителя.
     public override string GetDescription()
     {
         return $"Автомобиль {Brand}, номер {RegistrationNumber}, " + base.GetDescription();

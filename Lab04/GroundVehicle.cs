@@ -19,6 +19,7 @@ public abstract class GroundVehicle : TransportVehicle
     {
     }
 
+    // override абстрактного свойства из TransportVehicle.
     public override string MovementEnvironment => "Суша";
 
     public abstract string RoadType { get; }

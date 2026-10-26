@@ -25,6 +25,7 @@ public abstract class WaterVehicle : TransportVehicle
         LoadCapacityKg = loadCapacityKg;
     }
 
+    // override абстрактного свойства из TransportVehicle.
     public override string MovementEnvironment => "Вода";
 
     public double LoadCapacityKg { get; }

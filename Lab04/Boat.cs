@@ -11,6 +11,7 @@
 namespace Lab04;
 
 // Лодка с названием и вместимостью.
+// Наследует абстрактный WaterVehicle (водный транспорт), sealed запрещает наследование от Boat.
 public sealed class Boat : WaterVehicle
 {
     public Boat(
@@ -35,6 +36,7 @@ public sealed class Boat : WaterVehicle
 
     public int PassengerCapacity { get; }
 
+    // override абстрактного метода из TransportVehicle.
     public override string GetDescription()
     {
         return $"Лодка «{Name}», среда: {MovementEnvironment}, мест {PassengerCapacity}";

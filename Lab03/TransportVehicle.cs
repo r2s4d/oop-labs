@@ -13,11 +13,12 @@
 namespace Lab03;
 
 // Абстрактная основа иерархии транспортных средств.
-// Создать объект этого класса напрямую нельзя.
+// Создать объект этого класса напрямую нельзя (abstract class, new не сработает).
 public abstract class TransportVehicle
 {
     // Ссылка на первый узел общего связанного списка.
     // Поле static является единым для всех объектов и производных классов.
+    // Подчеркивание в имени _head только обозначает закрытое поле, знак ? значит "может быть null".
     private static TransportNode? _head;
 
     // Ссылка на последний узел позволяет добавлять объекты в конец без обхода списка.
@@ -27,6 +28,7 @@ public abstract class TransportVehicle
     private int _yearOfManufacture;
 
     // Создает транспорт с общими характеристиками.
+    // Конструктор protected: вызвать его могут только наследники через base(...).
     protected TransportVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
     {
         AverageSpeed = averageSpeed;
@@ -70,12 +72,15 @@ public abstract class TransportVehicle
     }
 
     // Среда движения: промежуточные абстрактные классы задают ее для своей ветви иерархии.
+    // abstract-свойство без тела, переопределяется через override в GroundVehicle и WaterVehicle.
     public abstract string MovementEnvironment { get; }
 
     // Производный класс обязан сформировать собственное описание объекта.
+    // abstract-метод без тела (аналог чисто виртуальной функции), override в Car, Train, Boat.
     public abstract string GetDescription();
 
     // Добавляет транспорт в конец общего связанного списка.
+    // static-метод: вызывается через класс, TransportVehicle.AddToRegistry(...).
     public static void AddToRegistry(TransportVehicle vehicle)
     {
         ArgumentNullException.ThrowIfNull(vehicle);
@@ -98,6 +103,7 @@ public abstract class TransportVehicle
 
     // Выводит все объекты из общего связанного списка.
     // Метод вызывается через имя класса, так как он статический.
+    // GetDescription() ниже вызывается полиморфно: срабатывает версия реального класса.
     public static void ShowRegistry()
     {
         if (_head is null)
@@ -120,6 +126,7 @@ public abstract class TransportVehicle
 
     // Внутренний узел односвязного списка.
     // Пользователю класса не требуется работать с узлами напрямую.
+    // Вложенный класс узла: хранит объект транспорта и ссылку Next на следующий узел.
     private sealed class TransportNode
     {
         public TransportNode(TransportVehicle value)

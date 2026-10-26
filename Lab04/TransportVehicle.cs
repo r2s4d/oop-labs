@@ -15,6 +15,7 @@ namespace Lab04;
 public abstract class TransportVehicle
 {
     // Начало общего односвязного списка транспорта.
+    // static: поле одно на весь класс, подчеркивание в имени обозначает закрытое поле, ? значит "может быть null".
     private static TransportNode? _head;
 
     protected TransportVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
@@ -41,8 +42,10 @@ public abstract class TransportVehicle
     public int YearOfManufacture { get; }
 
     // Среда движения задается промежуточными абстрактными классами.
+    // abstract-свойство без тела, override в GroundVehicle и WaterVehicle.
     public abstract string MovementEnvironment { get; }
 
+    // abstract-метод без тела, override в Car, Train, Boat.
     public abstract string GetDescription();
 
     // Добавляет объект в начало общего связанного списка.
@@ -54,6 +57,7 @@ public abstract class TransportVehicle
 
     // Последовательно возвращает объекты связанного списка.
     // Ключевое слово yield позволяет не создавать дополнительную коллекцию.
+    // Метод-итератор: возвращает элементы по одному, работает в foreach (это и есть итератор из задания).
     public static IEnumerable<TransportVehicle> EnumerateRegistry()
     {
         TransportNode? current = _head;

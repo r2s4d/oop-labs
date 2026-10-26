@@ -15,12 +15,13 @@ namespace Lab03;
 // Метод GetDescription здесь не реализуется, поэтому класс остается абстрактным.
 public abstract class GroundVehicle : TransportVehicle
 {
+    // Конструктор передает общие данные в базовый класс через base(...).
     protected GroundVehicle(double averageSpeed, string fuelType, int yearOfManufacture)
         : base(averageSpeed, fuelType, yearOfManufacture)
     {
     }
 
-    // Реализует абстрактное свойство базового класса для всех видов наземного транспорта.
+    // Реализует (override) абстрактное свойство базового класса для всех видов наземного транспорта.
     public override string MovementEnvironment => "Суша";
 
     // Новое абстрактное свойство: каждый конкретный наземный транспорт задает свой путь.
