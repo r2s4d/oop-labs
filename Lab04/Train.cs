@@ -11,7 +11,7 @@
 namespace Lab04;
 
 // Поезд с количеством вагонов и мест в каждом вагоне.
-public sealed class Train : TransportVehicle
+public sealed class Train : GroundVehicle
 {
     public Train(
         string trainNumber,
@@ -43,8 +43,10 @@ public sealed class Train : TransportVehicle
         return CarriageCount * PassengersPerCarriage;
     }
 
+    public override string RoadType => "Железная дорога";
+
     public override string GetDescription()
     {
-        return $"Поезд № {TrainNumber}, вагонов {CarriageCount}, мест {GetTotalSeats()}";
+        return $"Поезд № {TrainNumber}, среда: {MovementEnvironment} ({RoadType}), вагонов {CarriageCount}, мест {GetTotalSeats()}";
     }
 }

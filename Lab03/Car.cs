@@ -11,7 +11,7 @@
 namespace Lab03;
 
 // Конкретный вид транспорта, который представляет автомобиль.
-public sealed class Car : TransportVehicle
+public sealed class Car : GroundVehicle
 {
     public Car(
         string brand,
@@ -29,10 +29,13 @@ public sealed class Car : TransportVehicle
 
     public string RegistrationNumber { get; }
 
+    // Реализует абстрактное свойство класса GroundVehicle.
+    public override string RoadType => "Автомобильная дорога";
+
     // Реализует обязательный абстрактный метод базового класса.
     public override string GetDescription()
     {
-        return $"Автомобиль {Brand}, номер {RegistrationNumber}, " +
+        return $"Автомобиль {Brand}, номер {RegistrationNumber}, среда: {MovementEnvironment} ({RoadType}), " +
                $"скорость {AverageSpeed:F1} км/ч, топливо {FuelType}, год {YearOfManufacture}";
     }
 }

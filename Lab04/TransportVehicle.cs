@@ -40,6 +40,9 @@ public abstract class TransportVehicle
 
     public int YearOfManufacture { get; }
 
+    // Среда движения задается промежуточными абстрактными классами.
+    public abstract string MovementEnvironment { get; }
+
     public abstract string GetDescription();
 
     // Добавляет объект в начало общего связанного списка.

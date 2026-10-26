@@ -20,6 +20,9 @@ public abstract class TransportVehicle
     // Поле static является единым для всех объектов и производных классов.
     private static TransportNode? _head;
 
+    // Ссылка на последний узел позволяет добавлять объекты в конец без обхода списка.
+    private static TransportNode? _tail;
+
     private double _averageSpeed;
     private int _yearOfManufacture;
 
@@ -66,17 +69,31 @@ public abstract class TransportVehicle
         }
     }
 
+    // Среда движения: промежуточные абстрактные классы задают ее для своей ветви иерархии.
+    public abstract string MovementEnvironment { get; }
+
     // Производный класс обязан сформировать собственное описание объекта.
     public abstract string GetDescription();
 
-    // Добавляет транспорт в начало общего связанного списка.
+    // Добавляет транспорт в конец общего связанного списка.
     public static void AddToRegistry(TransportVehicle vehicle)
     {
         ArgumentNullException.ThrowIfNull(vehicle);
 
-        // Новый узел ссылается на прежнее начало списка.
-        // После этого новый узел становится началом списка.
-        _head = new TransportNode(vehicle, _head);
+        TransportNode node = new(vehicle);
+
+        if (_tail is null)
+        {
+            // Список был пустым: новый узел одновременно начало и конец.
+            _head = node;
+        }
+        else
+        {
+            // Прежний последний узел ссылается на новый.
+            _tail.Next = node;
+        }
+
+        _tail = node;
     }
 
     // Выводит все объекты из общего связанного списка.
@@ -105,14 +122,14 @@ public abstract class TransportVehicle
     // Пользователю класса не требуется работать с узлами напрямую.
     private sealed class TransportNode
     {
-        public TransportNode(TransportVehicle value, TransportNode? next)
+        public TransportNode(TransportVehicle value)
         {
             Value = value;
-            Next = next;
         }
 
         public TransportVehicle Value { get; }
 
-        public TransportNode? Next { get; }
+        // Ссылка на следующий узел заполняется при добавлении очередного объекта.
+        public TransportNode? Next { get; set; }
     }
 }

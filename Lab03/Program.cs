@@ -19,11 +19,16 @@ Console.WriteLine();
 Car firstCar = new("Lada Vesta", "А123БВ30", 80, "Бензин", 2021);
 Train train = new("109Ж", 12, 54, 95, "Электричество", 2019);
 Car secondCar = new("УАЗ Патриот", "В456ГД30", 70, "Бензин", 2020);
+Boat boat = new("Волга-1", 6, 600, 25, "Бензин", 2018);
+
+// Создать объект абстрактного класса нельзя, это привело бы к ошибке компиляции:
+// TransportVehicle invalid = new TransportVehicle(...);
 
 // Каждый объект добавляется через статический метод абстрактного класса.
 TransportVehicle.AddToRegistry(firstCar);
 TransportVehicle.AddToRegistry(train);
 TransportVehicle.AddToRegistry(secondCar);
+TransportVehicle.AddToRegistry(boat);
 
 // Статический метод вызывается через класс, а не через отдельный объект.
 TransportVehicle.ShowRegistry();

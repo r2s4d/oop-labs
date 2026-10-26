@@ -11,7 +11,7 @@
 namespace Lab03;
 
 // Конкретный вид транспорта, который представляет поезд.
-public sealed class Train : TransportVehicle
+public sealed class Train : GroundVehicle
 {
     public Train(
         string trainNumber,
@@ -43,10 +43,13 @@ public sealed class Train : TransportVehicle
         return CarriageCount * PassengersPerCarriage;
     }
 
+    // Реализует абстрактное свойство класса GroundVehicle.
+    public override string RoadType => "Железная дорога";
+
     // Реализует обязательный абстрактный метод базового класса.
     public override string GetDescription()
     {
-        return $"Поезд № {TrainNumber}, вагонов {CarriageCount}, мест {GetTotalSeats()}, " +
+        return $"Поезд № {TrainNumber}, среда: {MovementEnvironment} ({RoadType}), вагонов {CarriageCount}, мест {GetTotalSeats()}, " +
                $"скорость {AverageSpeed:F1} км/ч, топливо {FuelType}, год {YearOfManufacture}";
     }
 }

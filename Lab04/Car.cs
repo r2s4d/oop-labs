@@ -11,7 +11,7 @@
 namespace Lab04;
 
 // Автомобиль с маркой и регистрационным номером.
-public sealed class Car : TransportVehicle
+public sealed class Car : GroundVehicle
 {
     public Car(
         string brand,
@@ -29,8 +29,10 @@ public sealed class Car : TransportVehicle
 
     public string RegistrationNumber { get; }
 
+    public override string RoadType => "Автомобильная дорога";
+
     public override string GetDescription()
     {
-        return $"Автомобиль {Brand}, номер {RegistrationNumber}";
+        return $"Автомобиль {Brand}, номер {RegistrationNumber}, среда: {MovementEnvironment} ({RoadType})";
     }
 }
